@@ -5,10 +5,18 @@
  */
 package interfaces;
 
+import entidades.Usuario;
+import java.util.List;
+
 /**
  *
  * @author alum.fial8
  */
 public interface InterfaceUsuario {
-    
+    public boolean validarUsuario(String user, String pass);
+    public boolean registrarUsuario(Usuario u);
+    public boolean modificarUsuario(Usuario u);
+    public boolean eliminarUsuario(int id);
+    public List<Usuario> listarUsuario();
+    public Usuario buscarUsuario(String user);
 }
