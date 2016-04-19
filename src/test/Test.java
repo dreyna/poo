@@ -6,7 +6,10 @@
 package test;
 
 import dao.UsuarioDao;
+import entidades.Usuario;
 import interfaces.InterfaceUsuario;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,7 +22,7 @@ public class Test {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        verificarUser();
+        listar();
     }
     public static void verificarUser(){
       if(iu.validarUsuario("malaspina", "noduermas")){
@@ -29,4 +32,13 @@ public class Test {
                
       }
     }
+    public static void listar(){
+        List<Usuario> lista = new ArrayList<>();
+        lista = iu.listarUsuario();
+        System.out.println("id \tuser \tclave");
+        for(int i=0; i<lista.size();i++){
+            System.out.println(lista.get(i).getIduser() +"\t"+lista.get(i).getUser()+"\t"+lista.get(i).getClave());
+        }
+    
+    } 
 }

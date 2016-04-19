@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import util.Conexion;
@@ -63,7 +64,24 @@ public class UsuarioDao implements InterfaceUsuario{
 
     @Override
     public List<Usuario> listarUsuario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Usuario> list = new ArrayList<>();
+        sql = "SELECT *FROM tusuario";
+        try {
+            cx = Conexion.getConexion();
+            st = cx.createStatement();
+            rs = st.executeQuery(sql);
+            while(rs.next()){
+                Usuario u = new Usuario();
+                u.setIduser(rs.getInt("idTUsuario"));
+                u.setUser(rs.getString("user"));
+                u.setClave(rs.getString("clave"));
+                u.setIdp(rs.getInt("TPersona_idTPersona"));
+                list.add(u);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error: "+e);
+        }
+        return list;
     }
 
     @Override
